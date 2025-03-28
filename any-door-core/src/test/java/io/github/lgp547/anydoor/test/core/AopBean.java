@@ -14,10 +14,10 @@ public class AopBean {
     private Bean bean;
 
     private void privateMethod() {
-        Assert.notNull(bean);
+        Assert.notNull(bean, "bean is null");
     }
 
     public void publicMethod() {
-        Assert.notNull(bean);
+        Assert.notNull(bean, "bean is null");
     }
 }

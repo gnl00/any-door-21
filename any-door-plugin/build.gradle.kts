@@ -6,14 +6,11 @@ plugins {
 }
 
 group = "io.github.lgp547"
-version = "2.2.1"
+version = "2.2.1-21"
 
 repositories {
+    mavenLocal() // 默认使用 ~/.m2/ repository 可自行修改成本地仓库地址
     mavenCentral()
-    // todo：自行修改成本地maven仓库地址
-    mavenLocal {
-        url = uri("/Users/lgp/.m2/repository")
-    }
 }
 
 dependencies {
@@ -22,11 +19,12 @@ dependencies {
 
 }
 
+// 沙盒 idea 的版本
 // Configure Gradle IntelliJ Plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
 intellij {
-    // todo：若没商业版授权，这里改成社区版进行调式
-    version.set("2024.3") // 沙盒 idea 的版本
-//    type.set("IU") // 商业版
+    // TODO 若没商业版授权，这里改成社区版进行调式
+    version.set("2024.3.2.2")
+    // type.set("IU") // 商业版
     type.set("IC") // 社区版
 
     plugins.set(listOf("com.intellij.java", "com.intellij.modules.json"))
@@ -35,8 +33,8 @@ intellij {
 tasks {
     // Set the JVM compatibility versions
     withType<JavaCompile> {
-        sourceCompatibility = "17"
-        targetCompatibility = "17"
+        sourceCompatibility = "21"
+        targetCompatibility = "21"
         options.encoding = "UTF-8"
     }
 

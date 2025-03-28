@@ -116,29 +116,34 @@ public class AnyDoorHandlerMethod extends HandlerMethod {
         }
     }
 
-    protected Object[] getArgs(Map<String, Object> contentMap) {
+    protected Object[] getArgs(Map<String, Object> argsMap) {
         MethodParameter[] parameters = getMethodParameters();
         if (parameters == null || parameters.length == 0) {
             return new Object[0];
         }
-
         Object[] args = new Object[parameters.length];
         for (int i = 0; i < parameters.length; i++) {
             MethodParameter parameter = parameters[i];
             parameter.initParameterNameDiscovery(new DefaultParameterNameDiscoverer());
-            String value;
-            if (contentMap.containsKey(parameter.getParameterName())) {
-                value = Optional.ofNullable(contentMap.get(parameter.getParameterName())).map(JsonUtil::toStrNotExc).orElse(null);
-            } else {
-                // 对于是接口的话，通过顺序来填充参数，不再通过name来映射
-                value = Optional.ofNullable(contentMap.get("args" + i)).map(JsonUtil::toStrNotExc).orElse(null);
-            }
-            if (null == value) {
+            // 获取参数名称，如果为 null，则使用默认名称 "arg" + i
+            String parameterName = Optional.ofNullable(parameter.getParameterName()).orElse("arg" + i);
+            ArrayList<Object> argList = new ArrayList<>(argsMap.values());
+            // 尝试从 argsMap 中获取参数值
+            int finalI = i;
+            String value = Optional.ofNullable(argsMap.get(parameterName))
+                    .map(JsonUtil::toStrNotExc)
+                    .orElseGet(() -> {
+                        // 如果按名称未找到，则尝试按顺序获取
+                        return Optional.ofNullable(argList.get(finalI))
+                                .map(JsonUtil::toStrNotExc)
+                                .orElse(null);
+                    });
+            // 设置参数值
+            if (value == null) {
                 args[i] = null;
-                continue;
+            } else {
+                args[i] = getArgs(parameter, value);
             }
-
-            args[i] = getArgs(parameter, value);
         }
         return args;
     }

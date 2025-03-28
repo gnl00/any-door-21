@@ -24,11 +24,8 @@
     </scm>
 
     <properties>
-        <java.version>8</java.version>
-        <spring.boot.version>2.7.4</spring.boot.version>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
         <arthas.vmtool.version>3.6.7</arthas.vmtool.version>
+        <spring.boot.version>3.3.4</spring.boot.version>
     </properties>
 
     <dependencyManagement>
@@ -128,7 +125,7 @@
                     </plugin>
 
                     <!--gpg插件-->
-                    <plugin>
+                    <!--<plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
                         <version>1.5</version>
@@ -141,7 +138,7 @@
                                 </goals>
                             </execution>
                         </executions>
-                    </plugin>
+                    </plugin>-->
 
                 </plugins>
             </build>
@@ -215,7 +212,7 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
                         <version>1.5</version>
-                        <executions>
+                        <!--<executions>
                             <execution>
                                 <id>sign-artifacts</id>
                                 <phase>verify</phase>
@@ -223,7 +220,7 @@
                                     <goal>sign</goal>
                                 </goals>
                             </execution>
-                        </executions>
+                        </executions>-->
                     </plugin>
 
                 </plugins>

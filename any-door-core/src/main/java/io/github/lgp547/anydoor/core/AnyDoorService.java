@@ -6,16 +6,19 @@ import io.github.lgp547.anydoor.common.util.AnyDoorBeanUtil;
 import io.github.lgp547.anydoor.common.util.AnyDoorClassUtil;
 import io.github.lgp547.anydoor.common.util.AnyDoorSpringUtil;
 import io.github.lgp547.anydoor.util.JsonUtil;
+import org.springframework.core.DefaultParameterNameDiscoverer;
+import org.springframework.core.MethodParameter;
+
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
-import java.util.stream.Collectors;
 
 public class AnyDoorService {
 
@@ -78,7 +81,6 @@ public class AnyDoorService {
 
     private static Object handleAndRun(AnyDoorRunDto anyDoorDto, Method method, Object bean, Runnable startRun, Runnable endRun, String content, String methodName) {
         AnyDoorHandlerMethod handlerMethod = new AnyDoorHandlerMethod(bean, method);
-
         Integer num = anyDoorDto.getNum();
         List<Map<String, Object>> contentMaps;
         // 若是json数组，数量按照数组为准
@@ -144,5 +146,36 @@ public class AnyDoorService {
                 System.out.println(ANY_DOOR_RUN_MARK + methodName + " return: " + JsonUtil.toContentStrNotExc(result));
             }
         };
+    }
+
+    public static void main(String[] args) throws NoSuchMethodException {
+        Map<String, Object> contentMap = new HashMap<>();
+        contentMap.put("str", "123");
+        AnyDoorService bean = new AnyDoorService();
+        Method method = bean.getClass().getMethod("test2", String.class, Integer.class);
+        /*Parameter[] parameters = method.getParameters();
+        for (Parameter parameter : parameters) {
+            System.out.println(parameter.getName());
+        }*/
+        AnyDoorHandlerMethod handlerMethod = new AnyDoorHandlerMethod(bean, method);
+        MethodParameter[] methodParameters = handlerMethod.getMethodParameters();
+        for (int i = 0; i < methodParameters.length; i++) {
+            MethodParameter parameter = methodParameters[i];
+            System.out.println(parameter);
+            parameter.initParameterNameDiscovery(new DefaultParameterNameDiscoverer());
+            String parameterName = Optional.ofNullable(parameter.getParameterName()).orElse("arg" + i);
+            System.out.printf("AnyDoorHandlerMethod.getArgs fori i=%d resolvedParameterName=%s %n", i, parameterName);
+            // System.out.println(parameter.getParameterName());
+            System.out.println(parameter.getParameterType());
+        }
+        System.out.println(handlerMethod);
+    }
+
+    public void test(String str) {
+        System.out.println(str);
+    }
+
+    public void test2(String name, Integer age) {
+        System.out.println(name + age);
     }
 }

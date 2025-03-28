@@ -7,7 +7,6 @@ import io.github.lgp547.anydoor.common.util.AnyDoorBeanUtil;
 import io.github.lgp547.anydoor.common.util.AnyDoorFileUtil;
 import io.github.lgp547.anydoor.common.util.AnyDoorSpringUtil;
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 
 import java.io.File;

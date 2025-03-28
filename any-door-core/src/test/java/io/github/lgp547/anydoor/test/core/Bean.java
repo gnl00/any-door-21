@@ -149,7 +149,7 @@ public class Bean {
     }
 
     public void oneParamNull(String nameNull) {
-        Assert.isNull(nameNull);
+        Assert.isNull(nameNull, "require is not null");
     }
 
     private String oneParamPrivate(String name) {

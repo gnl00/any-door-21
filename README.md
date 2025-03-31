@@ -1,3 +1,10 @@
+# AnyDoor21 做了什么修改？
+
+1. 修复 JDK 21 项目设置方法参数为 null 的问题，`AnyDoorHandlerMethod.getArgs(java.util.Map)`（可尝试添加编译参数 `-parameters` 看问题是否能得到解决）
+2. 使用 JDK 21 编译 & 打包
+3. 插件依赖使用 `org.jetbrains.intellij.platform` 代替 `org.jetbrains.intellij`
+4. 如何启动？1、导入 any-door 项目，maven-lifecycle-clean&package&install；2、打开 any-door-plugin 项目，gradle-intellij-runIde 使用 debug 模式运行
+
 # AnyDoor 任意门
 
 目标：执行Spring项目任意对象的任意方法

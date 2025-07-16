@@ -1,5 +1,3 @@
-import java.util.Arrays
-
 fun properties(key: String) = providers.gradleProperty(key)
 
 plugins {
@@ -16,7 +14,7 @@ plugins {
 }
 
 group = "io.github.lgp547"
-version = "2.2.1-21"
+version = "2.2.2-jdk21"
 
 repositories {
     mavenLocal() // 默认使用 ~/.m2/ repository 可自行修改成本地仓库地址
@@ -29,8 +27,8 @@ repositories {
 }
 
 dependencies {
-    implementation("io.github.lgp547:any-door-core:2.2.1")
-    implementation("io.github.lgp547:any-door-attach:2.2.1")
+    implementation("io.github.lgp547:any-door-core:2.2.2")
+    implementation("io.github.lgp547:any-door-attach:2.2.2")
 
     // 使用 "org.jetbrains.intellij.platform"
     intellijPlatform {
@@ -42,13 +40,14 @@ dependencies {
 // 使用 "org.jetbrains.intellij" 需要进行下面的配置
 // 沙盒 idea 的版本
 // Configure Gradle IntelliJ Plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
-//intellij {
-//    // TODO 若没商业版授权，这里改成社区版进行调式
-//    version.set("2024.2")
-//    type.set("IC") // 商业版=type.set("IU") 社区版=type.set("IC")
-//    // plugins.set(listOf("com.intellij.java", "com.intellij.modules.json"))
-//    plugins.set(listOf("com.intellij.java"))
-//}
+intellij {
+    // todo：若没商业版授权，这里改成社区版进行调式
+    version.set("2024.3") // 沙盒 idea 的版本
+//    type.set("IU") // 商业版
+    type.set("IC") // 社区版
+
+    plugins.set(listOf("com.intellij.java", "com.intellij.modules.json"))
+}
 
 tasks {
     // Set the JVM compatibility versions

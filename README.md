@@ -7,6 +7,7 @@
 2. 使用 JDK 21 编译 & 打包
 3. 插件依赖使用 `org.jetbrains.intellij.platform` 代替 `org.jetbrains.intellij` 可查看 [官方文档](https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-dependencies-extension.html#plugins)
 4. 如何启动？1、导入 any-door 项目，maven-lifecycle-clean&package&install；2、打开 any-door-plugin 项目，gradle-intellij-runIde 使用 debug 模式运行
+5. 如何打包？1、打开 any-door-plugin 项目，点击 gradle -> Tasks -> intellij -> buildPlugin；2、产物在 any-door-plugin/build/distributions
 
 # AnyDoor 任意门
 

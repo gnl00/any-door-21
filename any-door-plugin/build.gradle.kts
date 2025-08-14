@@ -37,17 +37,18 @@ dependencies {
     }
 }
 
+// 使用 org.jetbrains.intellij.platform 需要注释 intellij 下面的内容
 // 使用 "org.jetbrains.intellij" 需要进行下面的配置
 // 沙盒 idea 的版本
 // Configure Gradle IntelliJ Plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
-intellij {
-    // todo：若没商业版授权，这里改成社区版进行调式
-    version.set("2024.3") // 沙盒 idea 的版本
-//    type.set("IU") // 商业版
-    type.set("IC") // 社区版
-
-    plugins.set(listOf("com.intellij.java", "com.intellij.modules.json"))
-}
+//intellij {
+//    // todo：若没商业版授权，这里改成社区版进行调式
+//    version.set("2024.3") // 沙盒 idea 的版本
+//    // type.set("IU") // 商业版
+//    type.set("IC") // 社区版
+//
+//    plugins.set(listOf("com.intellij.java", "com.intellij.modules.json"))
+//}
 
 tasks {
     // Set the JVM compatibility versions

@@ -14,7 +14,7 @@ plugins {
 }
 
 group = "io.github.lgp547"
-version = "2.2.2-jdk21"
+version = "2.2.2-jdk21-20251205"
 
 repositories {
     mavenLocal() // 默认使用 ~/.m2/ repository 可自行修改成本地仓库地址
